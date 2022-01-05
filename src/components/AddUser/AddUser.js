@@ -38,6 +38,7 @@ const AddUser = () => {
                   <form onSubmit={handleAddUser}>
 
                         <input
+                              style={{ width: "50%" }}
                               name="name"
                               placeholder="Name"
                               required="true"
@@ -48,6 +49,7 @@ const AddUser = () => {
                         <br />
 
                         <input
+                              style={{ width: "50%" }}
                               description="description"
                               placeholder="Description"
                               ref={descriptionRef}
@@ -56,12 +58,17 @@ const AddUser = () => {
                         <br />
 
                         <input
+                              style={{ width: "50%" }}
                               type="date"
                               ref={dateRef}
                               placeholder="date"
                         />
-                        <br />
-                        <input style={{color:'blue'}} type="submit" value="Add" />
+                        <br /><br />
+                        <div style={{color: 'blue'}}>
+                              <input style={{ color: 'blue', width: "20%" }} type="submit" value="Add" />
+
+
+                        </div>
 
                   </form>
             </div>
