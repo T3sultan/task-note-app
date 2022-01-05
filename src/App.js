@@ -9,6 +9,7 @@ import UpdateUser from './components/UpdateUser/UpdateUser';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import AuthProvider from './context/AuthProvider';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -25,12 +26,13 @@ function App() {
             <Route exact path="/">
               <Home></Home>
             </Route>
-            <Route exact path="/users">
+            <PrivateRoute exact path="/users">
               <Users></Users>
-            </Route>
-            <Route exact path="/users/add">
+            </PrivateRoute>
+
+            <PrivateRoute exact path="/users/add">
               <AddUser></AddUser>
-            </Route>
+            </PrivateRoute>
 
             <Route path="/users/update/:id">
               <UpdateUser></UpdateUser>
