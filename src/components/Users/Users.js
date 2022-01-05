@@ -72,7 +72,7 @@ const Users = () => {
 
 
                                           <Link to={`/users/update/${pd._id}`}> <button style={{color:"blue"}}>update</button> </Link>
-                                          <button style={{color:'red'}} onClick={() => handleDeleteUser(pd._id)}>X</button>
+                                          <button style={{color:'red'}} onClick={() => handleDeleteUser(pd._id)}>delete</button>
                                           {/* 
                                 <button
                                     onClick={() => handleDelete(pd._id)}
