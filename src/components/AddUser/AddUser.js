@@ -34,7 +34,7 @@ const AddUser = () => {
 
       return (
             <div>
-                  <h2>Please Add an User</h2>
+                  <h2>Add Todo List</h2>
                   <form onSubmit={handleAddUser}>
 
                         <input
