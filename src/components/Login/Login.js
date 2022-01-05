@@ -1,21 +1,72 @@
-import React from 'react';
-import { useForm } from "react-hook-form";
+import { Container, Typography, TextField, Button, CircularProgress, Alert } from '@mui/material';
+import React, { useState } from 'react';
+import { Grid } from '@mui/material';
+import login from '../../images/undraw_Login_re_4vu2.png'
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const [loginData, setLoginData] = useState({});
+    const { user, loginUser, isLoading, authError } = useAuth();
+
+    const location = useLocation();
+    const history = useHistory();
+
+    const handleOnChange = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
+    }
+    const handleLoginSubmit = e => {
+        loginUser(loginData.email, loginData.password, location, history);
+        e.preventDefault();
+    }
+    // const handleGoogleSignIn = () => {
+    //     signInWithGoogle(location, history)
+    // }
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            {/* register your input into the hook by invoking the "register" function */}
-            <input defaultValue="test" {...register("example")} /> <br />
+        <Container>
+            <Grid container spacing={2}>
+                <Grid item sx={{ mt: 8 }} xs={12} md={6}>
+                    <Typography variant="body1" gutterBottom>Login</Typography>
+                    <form onSubmit={handleLoginSubmit}>
+                        <TextField
+                            sx={{ width: '75%', m: 1 }}
+                            id="standard-basic"
+                            label="Your Email"
+                            name="email"
+                            onChange={handleOnChange}
+                            variant="standard" />
+                        <TextField
+                            sx={{ width: '75%', m: 1 }}
+                            id="standard-basic"
+                            label="Your Password"
+                            type="password"
+                            name="password"
+                            onChange={handleOnChange}
+                            variant="standard" />
 
-            {/* include validation with required or other standard HTML validation rules */}
-            <input {...register("exampleRequired", { required: true })} /> <br />
-            {/* errors will return when field validation fails  */}
-            {errors.exampleRequired && <span>This field is required</span>}
+                        <Button sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Login</Button>
+                        <NavLink
+                            style={{ textDecoration: 'none' }}
+                            to="/register">
+                            <Button variant="text">New User? Please Register</Button>
+                        </NavLink>
+                        {isLoading && <CircularProgress />}
+                        {user?.email && <Alert severity="success">Login successfully!</Alert>}
+                        {authError && <Alert severity="error">{authError}</Alert>}
+                    </form>
+                    {/* <p>-------------------------</p>
+                    <Button onClick={handleGoogleSignIn} variant="contained">Google Sign In</Button> */}
 
-            <input type="submit" />
-        </form>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <img style={{ width: '100%' }} src={login} alt="" />
+                </Grid>
+            </Grid>
+        </Container>
     );
 };
 

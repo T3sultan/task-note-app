@@ -8,14 +8,18 @@ import AddUser from './components/AddUser/AddUser';
 import UpdateUser from './components/UpdateUser/UpdateUser';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import AuthProvider from './context/AuthProvider';
 
 function App() {
   return (
     <div className="App">
-    <Login></Login>
 
-      {/* <Router>
-        <div>
+      <AuthProvider>
+
+
+
+        <Router>
+
           <Header></Header>
           <Switch>
             <Route exact path="/">
@@ -24,7 +28,7 @@ function App() {
             <Route exact path="/users">
               <Users></Users>
             </Route>
-            <Route path="/users/add">
+            <Route exact path="/users/add">
               <AddUser></AddUser>
             </Route>
 
@@ -40,8 +44,9 @@ function App() {
 
 
           </Switch>
-        </div>
-      </Router> */}
+
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
