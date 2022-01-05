@@ -10,7 +10,7 @@ const UpdateUser = () => {
             fetch(url)
                   .then(res => res.json())
                   .then(data => setUser(data));
-      }, []);
+      }, [id]);
 
       // Update User
       const handleNameChange = e => {
